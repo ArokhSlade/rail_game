@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=3 uid="uid://b3xg2xga7qmev"]
+
+[ext_resource type="Script" path="res://player.gd" id="1_vji8x"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_fs05g"]
+size = Vector3(0.3, 1.6, 0.3)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_u3fhh"]
+albedo_color = Color(0.909459, 0.535676, 0.788827, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_duf3a"]
+material = SubResource("StandardMaterial3D_u3fhh")
+size = Vector3(0.3, 0.5, 0.3)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_k5l76"]
+radius = 0.3
+
+[node name="TestPlayer_00" type="CharacterBody3D"]
+script = ExtResource("1_vji8x")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_fs05g")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_duf3a")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("CapsuleShape3D_k5l76")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

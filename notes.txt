@@ -1,0 +1,10 @@
+player_00.gd -> 
+sets position manually, move_and_slide and velocity not used, 
+switching is direct from rail to rail, without positioning, transition or flying
+
+player_01.gd -> 
+trying to use velocity.
+confused about vector
+
+
+player_03.gd -> WIP binary search (also reail.gd)
