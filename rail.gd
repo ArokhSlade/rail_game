@@ -3,6 +3,10 @@ extends Path3D
 @onready var path_follow = $PathFollow3D
 @export var shape : Node3D
 @export var area : Area3D
+@export var is_looping = false
+
+func _ready():
+	path_follow.loop = is_looping
 
 func get_dist_sq(_path_follow, ratio, near_pos):
 	_path_follow.progress_ratio = ratio

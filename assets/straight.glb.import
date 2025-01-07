@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://b3w7q2p2fx2sd"
-path="res://.godot/imported/straight.glb-7c82190961a03ee5224e03c7655ceec0.scn"
+path="res://.godot/imported/straight.glb-cff2f05982b8be2f95b7598f182646b9.scn"
 
 [deps]
 
-source_file="res://1. gamejam/straight.glb"
-dest_files=["res://.godot/imported/straight.glb-7c82190961a03ee5224e03c7655ceec0.scn"]
+source_file="res://assets/straight.glb"
+dest_files=["res://.godot/imported/straight.glb-cff2f05982b8be2f95b7598f182646b9.scn"]
 
 [params]
 

@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://q8qn2pbf6ud5"
-path="res://.godot/imported/Cap.glb-cfebdbf2a0ed6a8ced50ed0978e9ab52.scn"
+path="res://.godot/imported/Cap.glb-507229a8ee3100f98303ce8d9adbd3e1.scn"
 
 [deps]
 
-source_file="res://1. gamejam/Cap.glb"
-dest_files=["res://.godot/imported/Cap.glb-cfebdbf2a0ed6a8ced50ed0978e9ab52.scn"]
+source_file="res://assets/Cap.glb"
+dest_files=["res://.godot/imported/Cap.glb-507229a8ee3100f98303ce8d9adbd3e1.scn"]
 
 [params]
 

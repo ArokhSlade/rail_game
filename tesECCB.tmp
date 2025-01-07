@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://df5vg8y2ikf14"]
+[gd_scene load_steps=12 format=3 uid="uid://df5vg8y2ikf14"]
 
 [ext_resource type="Script" path="res://test_level_00.gd" id="1_nvw2d"]
 [ext_resource type="PackedScene" uid="uid://b3xg2xga7qmev" path="res://test_player_00.tscn" id="2_hu7nc"]
@@ -15,13 +15,9 @@ _data = {
 }
 point_count = 5
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_3p72v"]
-radius = 5.0
-
 [sub_resource type="Curve3D" id="Curve3D_tvha4"]
-bake_interval = 0.05
 _data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -9.8201, -0.00205779, 0, 0, 0, 0, 0, 0, 0, 1.71433, 0.0604599, 0),
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -9.82013, -0.00205779, 0, 0, 0, 0, 0, 0, 0, 1.71433, 0.0604599, 0),
 "tilts": PackedFloat32Array(0, 0)
 }
 point_count = 2
@@ -39,80 +35,71 @@ point_count = 9
 [node name="TestLevel_00" type="Node"]
 script = ExtResource("1_nvw2d")
 
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 3, 7)
-projection = 1
-size = 11.476
-
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.92028, -0.0382212, 0.38939, -0.383758, 0.105794, 0.917354, -0.0762576, -0.993653, 0.0826927, -0.184631, 2.32849, 0)
 
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 1, 10)
+
 [node name="Rails" type="Node3D" parent="."]
 
-[node name="Rail_Ring" type="Path3D" parent="Rails"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -7, -4, 0)
+[node name="Rail_1" type="Path3D" parent="Rails"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 3, 0, 0)
 curve = SubResource("Curve3D_1hblu")
 script = ExtResource("3_c0qem")
 is_looping = true
 
-[node name="PathFollow3D" type="PathFollow3D" parent="Rails/Rail_Ring"]
+[node name="PathFollow3D" type="PathFollow3D" parent="Rails/Rail_1"]
 transform = Transform3D(-4.37109e-08, 0, 0.999994, 0, 0.999996, 0, -0.999988, 0, -4.37111e-08, 3, 0, 0)
 
-[node name="CSGTorus3D" type="CSGTorus3D" parent="Rails/Rail_Ring"]
+[node name="TestPlayer_00" parent="Rails/Rail_1/PathFollow3D" node_paths=PackedStringArray("rails_parent") instance=ExtResource("2_hu7nc")]
+JUMP_VELOCITY = 8.0
+rails_parent = NodePath("../../..")
+
+[node name="CSGTorus3D" type="CSGTorus3D" parent="Rails/Rail_1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.1228, 0, -4.74475)
 inner_radius = 4.7
 outer_radius = 5.0
 sides = 32
 
-[node name="Area3D" type="Area3D" parent="Rails/Rail_Ring" groups=["Rails"]]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Rails/Rail_Ring/Area3D" groups=["Rails"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.2, -2.14186e-07, -4.9)
-shape = SubResource("SphereShape3D_3p72v")
-
-[node name="Rail_Straight" type="Path3D" parent="Rails" node_paths=PackedStringArray("area")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 0, 0)
+[node name="Rail_2" type="Path3D" parent="Rails" node_paths=PackedStringArray("area")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 3, -2)
 curve = SubResource("Curve3D_tvha4")
 script = ExtResource("3_c0qem")
 area = NodePath("Area3D")
 
-[node name="PathFollow3D" type="PathFollow3D" parent="Rails/Rail_Straight"]
-transform = Transform3D(7.54955e-08, -0.00541997, -0.999973, 2.32827e-10, 0.999977, -0.00541995, 0.999985, 1.76364e-10, 7.54959e-08, -9.8201, -0.00205779, 0)
+[node name="PathFollow3D" type="PathFollow3D" parent="Rails/Rail_2"]
+transform = Transform3D(7.54955e-08, -0.00541998, -0.999977, 2.32827e-10, 0.999981, -0.00541995, 0.999985, 1.76364e-10, 7.54962e-08, -9.82013, -0.00205779, 0)
 
-[node name="Area3D" type="Area3D" parent="Rails/Rail_Straight" groups=["Rails"]]
+[node name="Area3D" type="Area3D" parent="Rails/Rail_2" groups=["Rails"]]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Rails/Rail_Straight/Area3D" groups=["Rails"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 0)
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Rails/Rail_2/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 2)
 shape = SubResource("BoxShape3D_tm2so")
 
-[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Rails/Rail_Straight"]
-transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -4, 0, 0)
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Rails/Rail_2"]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -4, 0, 2)
 radius = 0.118
 height = 11.7029
 
-[node name="Rail_Curl" type="Path3D" parent="Rails"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22, 3, 0)
+[node name="Rail3" type="Path3D" parent="Rails"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, -1, 0)
 curve = SubResource("Curve3D_m1wvx")
 script = ExtResource("3_c0qem")
 
-[node name="PathFollow3D" type="PathFollow3D" parent="Rails/Rail_Curl"]
-transform = Transform3D(1.03914e-07, 0.690075, -0.723737, 2.98023e-08, 0.723737, 0.690075, 1, -9.32775e-08, 5.46406e-08, -8.99165, 2.99991, 0)
+[node name="PathFollow3D" type="PathFollow3D" parent="Rails/Rail3"]
+transform = Transform3D(1.03914e-07, 0.690075, -0.723737, 2.98023e-08, 0.723737, 0.690075, 1, -9.32776e-08, 5.46407e-08, -8.99165, 2.99991, 0)
 
-[node name="TestPlayer_00" parent="Rails/Rail_Curl/PathFollow3D" node_paths=PackedStringArray("camera", "rails_parent") instance=ExtResource("2_hu7nc")]
-camera = NodePath("../../../../Camera3D")
-JUMP_VELOCITY = 8.0
-rails_parent = NodePath("../../..")
+[node name="90_Curve" parent="Rails/Rail3" instance=ExtResource("4_osvj0")]
 
-[node name="90_Curve" parent="Rails/Rail_Curl" instance=ExtResource("4_osvj0")]
-
-[node name="45_straight" parent="Rails/Rail_Curl" instance=ExtResource("5_pnexj")]
+[node name="45_straight" parent="Rails/Rail3" instance=ExtResource("5_pnexj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 2, 0)
 
-[node name="45_90_Grad_Curve" parent="Rails/Rail_Curl" instance=ExtResource("6_wh4k8")]
+[node name="45_90_Grad_Curve" parent="Rails/Rail3" instance=ExtResource("6_wh4k8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, 0)
 
-[node name="45_90_Grad_Curve2" parent="Rails/Rail_Curl" instance=ExtResource("6_wh4k8")]
+[node name="45_90_Grad_Curve2" parent="Rails/Rail3" instance=ExtResource("6_wh4k8")]
 transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, -4, 2, 0)
 
-[node name="left_45_Curve" parent="Rails/Rail_Curl" instance=ExtResource("7_jhrkw")]
+[node name="left_45_Curve" parent="Rails/Rail3" instance=ExtResource("7_jhrkw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 0)

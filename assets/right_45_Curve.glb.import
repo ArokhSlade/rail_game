@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://ckhgsrvhjy8s8"
-path="res://.godot/imported/right_45_Curve.glb-f1567199fcab7ead4d30a87ad93bfc79.scn"
+path="res://.godot/imported/right_45_Curve.glb-dc52f7cac949211871ac8a8b2770be31.scn"
 
 [deps]
 
-source_file="res://1. gamejam/right_45_Curve.glb"
-dest_files=["res://.godot/imported/right_45_Curve.glb-f1567199fcab7ead4d30a87ad93bfc79.scn"]
+source_file="res://assets/right_45_Curve.glb"
+dest_files=["res://.godot/imported/right_45_Curve.glb-dc52f7cac949211871ac8a8b2770be31.scn"]
 
 [params]
 
